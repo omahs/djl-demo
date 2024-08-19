@@ -7,8 +7,6 @@ apply(file("../../tools/gradle/javaFormatter.gradle.kts"))
 
 group = "com.examples"
 version = "1.0-SNAPSHOT"
-var djlVersion = property("djl_version") as String
-djlVersion = if (djlVersion.endsWith("-SNAPSHOT")) djlVersion else "${djlVersion}-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -16,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("ai.djl:bom:${djlVersion}"))
+    implementation(platform("ai.djl:bom:${property("djl_version")}"))
     implementation("ai.djl:api")
 
     runtimeOnly("ai.djl.pytorch:pytorch-engine")
